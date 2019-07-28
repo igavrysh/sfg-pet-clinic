@@ -9,9 +9,6 @@ import javax.persistence.Table;
 @Table(name = "types")
 public class PetType extends BaseEntity {
 
-    @Id
-    private Long id;
-
     @Column(name = "name")
     private String name;
 

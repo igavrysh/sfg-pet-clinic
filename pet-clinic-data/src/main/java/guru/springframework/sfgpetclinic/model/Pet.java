@@ -7,9 +7,6 @@ import java.time.LocalDate;
 @Table(name = "pets")
 public class Pet extends BaseEntity {
 
-    @Id
-    private Long id;
-
     @Column(name = "name")
     private String name;
 

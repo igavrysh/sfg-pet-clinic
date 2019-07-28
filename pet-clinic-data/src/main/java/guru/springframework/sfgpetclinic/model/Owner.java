@@ -8,9 +8,6 @@ import java.util.Set;
 @Table(name = "owners")
 public class Owner extends Person {
 
-    @Id
-    private Long id;
-
     @Column(name = "address")
     private String address;
 
