@@ -35,7 +35,7 @@ public class OwnerController {
 
     @GetMapping("/{ownerId}")
     public ModelAndView showOwner(@PathVariable("ownerId") Long ownerId) {
-        ModelAndView mav = new ModelAndView("owners/ownersDetails");
+        ModelAndView mav = new ModelAndView("owners/ownerDetails");
         Owner owner = ownerService.findById(ownerId);
         mav.addObject(owner);
         return mav;

@@ -78,11 +78,12 @@ class OwnerControllerTest {
 
     @Test
     void displayOwner() throws Exception {
-        when(ownerService.findById(anyLong())).thenReturn(Owner.builder().id(1L).build());
+        Owner owner = Owner.builder().id(123L).build();
+        when(ownerService.findById(anyLong())).thenReturn(owner);
 
-        mockMvc.perform(get("/owners/1"))
+        mockMvc.perform(get("/owners/123"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("owners/ownersDetails"))
-                .andExpect((model().attribute("owner", hasProperty("id", is(1L)))));
+                .andExpect(view().name("owners/ownerDetails"))
+                .andExpect((model().attribute("owner", notNullValue())));
     }
 }
