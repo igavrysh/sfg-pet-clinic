@@ -21,9 +21,9 @@
         <td>
             <a th:href="@{/owners/__${owner.owner.id}__}" th:text="${owner.owner.firstName + ' ' + owner.owner.lastName}"/></a>
         </td>
-        <td th:text="${owner.owner.address}"/>
-        <td th:text="${owner.owner.city}"/>
-        <td th:text="${owner.owner.telephone}"/>
+        <td th:text="${owner.address}"/>
+        <td th:text="${owner.city}"/>
+        <td th:text="${owner.telephone}"/>
         <td><span th:each="pet : ${owner.pets}" th:text="${pet.name} "/></td>
     </tr>
     </tbody>
