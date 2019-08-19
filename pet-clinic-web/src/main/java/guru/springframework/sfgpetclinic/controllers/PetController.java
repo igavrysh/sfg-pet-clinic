@@ -32,7 +32,7 @@ public class PetController {
         this.petTypeService = petTypeService;
     }
 
-    @ModelAttribute("type")
+    @ModelAttribute("types")
     public Collection<PetType> populatePetTypes() {
         return petTypeService.findAll();
     }
