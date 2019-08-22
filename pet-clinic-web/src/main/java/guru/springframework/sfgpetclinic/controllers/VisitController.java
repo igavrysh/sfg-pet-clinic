@@ -11,6 +11,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 
 @Controller
 public class VisitController {
@@ -24,8 +26,15 @@ public class VisitController {
     }
 
     @InitBinder
-    public void setAllowedFields(WebDataBinder dataBinder) {
+    public void dataBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
+
+        dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                setValue(LocalDate.parse(text));
+            }
+        });
     }
 
     @ModelAttribute("visit")
@@ -44,7 +53,8 @@ public class VisitController {
     }
 
     // Spring MVC calles method loadPetWithVisit(...) before processNewVisitForm is called
-    @PostMapping String processNewVisitFrom(@Valid Visit visit, BindingResult result) {
+    @PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
+    String processNewVisitFrom(@Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
             return "pets/createOrUpdateVisitForm";
         } else {
